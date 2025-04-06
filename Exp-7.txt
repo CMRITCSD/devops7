@@ -1,0 +1,35 @@
+pipeline{
+    agent any
+    tools{
+        maven 'Maven'
+        
+    }
+    stages{
+        stage('clone the repository'){
+            steps{
+                git url: 'https://github.com/Gitmohsin/Moday.git'
+            }
+        }
+        stage('Build the code'){
+            steps{
+                bat 'mvn clean install'
+            }
+        }
+        stage('deploy to tomcat'){
+            steps{
+               deploy adapters: [tomcat9(credentialsId: 'CSD', path: '', url: 'http://localhost:9090/')], contextPath: null, war: '**/*.war'
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+<role rolename="manager-script"/>
+<role rolename="manager-gui"/>
+<user username="csd" password="csd123" roles="manager-script"/>
+<user username="csd" password="csd123" roles="manager-gui"/>
