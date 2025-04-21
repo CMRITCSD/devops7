@@ -29,7 +29,5 @@ pipeline{
 
 
 
-<role rolename="manager-script"/>
-<role rolename="manager-gui"/>
 <user username="csd" password="csd123" roles="manager-script"/>
 <user username="csd" password="csd123" roles="manager-gui"/>
